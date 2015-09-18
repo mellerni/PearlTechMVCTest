@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="da2f334697904659addbe61dca975b7c" Name="Diagram1">
+      <Diagram DiagramId="da2f334697904659addbe61dca975b7c" Name="Diagram1" ZoomLevel="86">
         <EntityTypeShape EntityType="PTTestModel.Customer" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PTTestModel.Order" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PTTestModel.ProductOrder" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="PTTestModel.Product" Width="1.5" PointX="7.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTTestModel.Order" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTTestModel.ProductOrder" Width="1.5" PointX="2.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PTTestModel.Product" Width="1.5" PointX="2.75" PointY="4.25" IsExpanded="true" />
         <AssociationConnector Association="PTTestModel.FK_dbo_Orders_dbo_Customers_CustomerID" ManuallyRouted="false" />
         <AssociationConnector Association="PTTestModel.FK_dbo_ProductOrders_dbo_Orders_OrderID" ManuallyRouted="false" />
         <AssociationConnector Association="PTTestModel.FK_dbo_ProductOrders_dbo_Products_ProductID" ManuallyRouted="false" />

@@ -3,29 +3,56 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>Pearl Tech MVC Test</h1>
+    <p class="lead">Pearl Tech uses ASP.NET MVC and ASP.NET Web Forms</p>
+    <p><a href="http://pearltechnology.com/" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>Request</h2>
+        <p>
+            Your client has an existing SQL database containing their customers and orders.
+            The client has requested the functionality to search the customers and view their details, through an intranet site.
+            It will be your responsibility to create the functionality requested by the client. 
+        </p>
+    </div>
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <h2>Client Requirements</h2>
+        <ul>
+            <li>We must be able to search by last name.</li>
+            <ul>
+                <li>Searching by a combination of last name, first name, and order number would be nice</li>
+            </ul>
+            <li>After searching please display first name, last name, and customer number in search results</li>
+            <li>After locating the customer we need to see the details of their orders, preferably displaying their most recent orders first.</li>
+            <li>We will also need the ability to set the date an order has shipped.</li>
+            <li>It is <b>very important</b> that all of this functionality is on one page.</li>
+            <li>It would be nice to easily identify any orders that have not shipped, however this feature is not the highest priority.</li>
+            <li>Most of our websites have a blue theme based on the #004b8d hex color. It would be nice to have but it is not a high priority.</li>
+        </ul>
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>Database Diagram</h2>
+        <img width="100%" src="~/Content/Images/PTTestDesignerDiagram.png" alt="Diagram of the database relationships" />
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>Helpful Hints</h2>
+        <ul>
+            <li>Connect to the database using:</li>
+            <ul>
+                <li>Server: localhost</li>
+                <li>Database Name: PTTest</li>
+                <li>Username: sa</li>
+                <li>Password: P@ssW0rd1 <sub>(0 is a zero)</sub></li>
+            </ul>
+            <li>PTCustomerController.cs was already made by a previous developer for this exercise.</li>
+            <li>PTTest database is already overworked, please avoid unnecessary database calls.</li>
+            <li>Please abstract any functionality you create out to use in later projects.</li>
+        </ul>
+        <p><a class="btn btn-default" href="https://scotch.io/bar-talk/s-o-l-i-d-the-first-five-principles-of-object-oriented-design">Learn more &raquo;</a></p>
     </div>
 </div>

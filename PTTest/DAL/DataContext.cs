@@ -10,7 +10,7 @@ using System.Data.Entity.Validation;
 
 namespace PTTest.DAL
 {
-    class DataContext : DbContext
+    public class DataContext : DbContext
     {
         public DataContext() : base("PTTest")
         {
