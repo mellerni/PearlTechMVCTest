@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PTTest.Models
+namespace PearlTech.Framework.Models
 {
     public class Order
     {
@@ -18,8 +18,7 @@ namespace PTTest.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int OrderID { get; set; }
+        public int Id { get; set; }
         [Display(Name = "Order Number")]
         public double OrderNumber { get; set; }
 

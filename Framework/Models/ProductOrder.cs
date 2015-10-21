@@ -5,14 +5,14 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PTTest.Models
+namespace PearlTech.Framework.Models
 {
     public class ProductOrder
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ProductID { get; set; }
-        [ForeignKey("ProductID")]
+        public int ProductId { get; set; }
+        [ForeignKey("ProductId")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public virtual Product Product { get; set; }
 
@@ -20,8 +20,8 @@ namespace PTTest.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int OrderID { get; set; }
-        [ForeignKey("OrderID")]
+        public int OrderId { get; set; }
+        [ForeignKey("OrderId")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public virtual Order Order { get; set;  }
 

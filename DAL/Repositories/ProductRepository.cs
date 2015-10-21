@@ -1,7 +1,7 @@
 ﻿using System;
-using PTTest.Models;
+using PearlTech.Framework.Models;
 
-namespace PTTest.DAL.Repositories
+namespace PearlTech.DAL.Repositories
 {
     public class ProductRepository : RepositoryBase<Product>
     {

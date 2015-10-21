@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PTTest.Models
+namespace PearlTech.Framework.Models
 {
     public class Product
     {
@@ -17,8 +17,8 @@ namespace PTTest.Models
 
     
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ProdcutID { get; set; }
+        public int Id { get; set; }
+
         [Display(Name = "Product Name")]
         public string ProductName { get; set; }
 

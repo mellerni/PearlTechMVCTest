@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace PTTest.DAL.Interfaces
+namespace PearlTech.DAL.Interfaces
 {
     public interface IRepositoryBase<TEntity> where TEntity : class
     {

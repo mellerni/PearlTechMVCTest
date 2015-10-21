@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Web;
-using PTTest.DAL;
-using PTTest.DAL.Interfaces;
-using System.Data.Entity;
-using System.Threading.Tasks;
+using PearlTech.DAL.Interfaces;
 
-namespace PTTest.DAL.Repositories
+namespace PearlTech.DAL.Repositories
 {
     //Declare abstract class for all table interactions using common functions
     //  THese default functions require override [GetPaged(), GetAll(), GetFullObject()]

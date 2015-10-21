@@ -4,17 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
-using PTTest.Models;
+using PearlTech.Framework.Models;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 
-namespace PTTest.DAL
+namespace PearlTech.DAL
 {
     public class DataContext : DbContext
     {
         public DataContext() : base("PTTest")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DataContext, PTTest.Migrations.Configuration>("PTTest"));
         }
 
         public DbSet<Product> Products { get; set; }
@@ -25,7 +24,7 @@ namespace PTTest.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductOrder>()
-                        .HasKey(k => new { k.ProductID, k.OrderID});
+                        .HasKey(k => new { k.ProductId, k.OrderId});
         }
 
     }

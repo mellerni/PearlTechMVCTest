@@ -1,22 +1,19 @@
 
-namespace PTTest.Migrations
-{
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using PTTest.Models;
-    using System.Collections.Generic;
-    using System.Linq;
+//using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<PTTest.DAL.DataContext>
-    {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = true;
-        }
 
-        protected override void Seed(PTTest.DAL.DataContext context)
-        {
+
+//namespace PTTest.Migrations
+//{
+//    internal sealed class Configuration : DbMigrationsConfiguration<DataContext>
+//    {
+//        public Configuration()
+//        {
+//            AutomaticMigrationsEnabled = true;
+//        }
+
+//        protected override void Seed(DataContext context)
+//        {
             //   This method will be called after migrating to the latest version.
          
            //context.Customers.AddOrUpdate(c => new {c.CustomerID, c.FirstName, c.LastName, c.CustomerNumber },
@@ -92,6 +89,6 @@ namespace PTTest.Migrations
 
            // base.Seed(context);
 
-        }
-    }
-}
+//        }
+//    }
+//}

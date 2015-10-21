@@ -1,9 +1,9 @@
 using System;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
-using PTTest.DAL.Interfaces;
-using PTTest.Models;
-using PTTest.DAL.Repositories;
+using PearlTech.Framework.Models;
+using PearlTech.DAL.Interfaces;
+using PearlTech.DAL.Repositories;
 
 namespace PTTest.App_Start
 {
