@@ -28,8 +28,8 @@ namespace PearlTech.Framework.Models
         [Display(Name = "Date Shipped")]
         public DateTime ShippedDT { get; set; }
     
-        public int CustomerID { get; set; }
-        [ForeignKey("CustomerID")]
+        public int CustomerId { get; set; }
+        [ForeignKey("CustomerId")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public virtual Customer Customer { get; set; }
 
