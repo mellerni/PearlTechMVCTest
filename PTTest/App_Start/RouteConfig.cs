@@ -13,9 +13,11 @@ namespace PTTest
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+            //  /Home
             routes.MapRoute(
                 name: "",
-                url: "{controller}",
+                url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
         }

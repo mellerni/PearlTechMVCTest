@@ -12,7 +12,7 @@ namespace PearlTech.DAL
 {
     public class DataContext : DbContext
     {
-        public DataContext() : base("PTTest")
+        public DataContext() : base("name=PTTest")
         {
         }
 
