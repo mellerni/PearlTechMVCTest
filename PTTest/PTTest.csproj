@@ -170,7 +170,7 @@
     <Content Include="App_Data\PTTest_log.ldf">
       <DependentUpon>PTTest.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\seeTheDatabase.txt" />
+    <Content Include="App_Data\database.txt" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\PTTestDesignerDiagram.png" />

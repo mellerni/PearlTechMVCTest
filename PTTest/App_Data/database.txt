@@ -1,0 +1,5 @@
+﻿run Entity Framework to get the local database
+
+PM>updata-database
+
+Check the connection string
