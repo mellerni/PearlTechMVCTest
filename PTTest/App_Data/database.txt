@@ -1,4 +1,8 @@
-﻿run Entity Framework to get the local database
+﻿Open the RAR and leave the database in the App-Data folder
+
+OR
+
+run Entity Framework to get the local database
 
 PM>updata-database
 
