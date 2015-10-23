@@ -43,6 +43,8 @@ namespace PTTest.App_Start
             container.RegisterType<IRepositoryBase<Customer>, CustomerRepository>();
             container.RegisterType<IRepositoryBase<Product>, ProductRepository>();
             container.RegisterType<IRepositoryBase<Order>, OrderRepository>();
+            container.RegisterType<IRepositoryBase<ProductOrder>, ProductOrderRepository>();
+
         }
     }
 }

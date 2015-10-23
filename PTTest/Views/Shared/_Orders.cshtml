@@ -1,0 +1,32 @@
+﻿@using PearlTech.Framework.Models
+@model IEnumerable<Order>
+
+@foreach (var order in Model)
+{
+        <td colspan="2">
+            <div class="order-header">
+                <h6>
+                    @Html.DisplayNameFor(model => model.OrderNumber) :
+                    @Html.DisplayFor(model => order.OrderNumber)
+                </h6>
+            </div>
+            <div class="order-info">
+                <h6>@Html.DisplayNameFor(model => model.OrderDT) :</h6>
+                <span>@Html.DisplayFor(model => order.OrderDT)</span>
+                <h6> @Html.DisplayNameFor(model => model.ShippedDT) : </h6>
+                <span>@Html.DisplayFor(model => order.ShippedDT)</span>
+                &nbsp
+                <abbr title="Calender function to add later">
+                    <a href="#">
+                        <p class="glyphicon glyphicon-th"></p>
+                    </a>
+                </abbr>
+            </div>
+        </td>
+    <td colspan="2">
+        @Html.Partial("_ProductOrder", order.ProductOrder)
+    </td>
+}
+
+
+

@@ -22,7 +22,7 @@ namespace PearlTech.Framework.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         [Display(Name = "Customer Number")]
-        public double CustomerNumber { get; set; }
+        public double CustomerNumber { get; set ; }
 
         public virtual ICollection<Order> Orders { get; set; }
 

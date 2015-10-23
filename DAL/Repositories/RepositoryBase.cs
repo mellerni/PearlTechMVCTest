@@ -25,7 +25,7 @@ namespace PearlTech.DAL.Repositories
 
         public virtual IQueryable<TEntity> GetAll()
         {
-            return dbSet;
+            return dbSet.AsQueryable();
         }
 
         public virtual IQueryable<TEntity> GetPaged(int top = 20, int skip = 0, object orderBy = null, object filter = null)

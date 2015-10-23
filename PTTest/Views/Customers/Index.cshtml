@@ -1,15 +1,23 @@
 ﻿@using PearlTech.Framework.Models
-@model IEnumerable<PearlTech.Framework.Models.Customer>
+@model IEnumerable<Customer>
 
 
 @{
     ViewBag.Title = "Customer Information";
-    Customer searchCustomer = new Customer { Id = 0, FirstName = "", LastName = "", Orders = null };
+    Customer searchCustomer = new Customer { Id = 0, FirstName = null, LastName = null, CustomerNumber = default(int), Orders = null };
 }
 
 <h2>Customer Information</h2>
 
-<div class="form-horizontal col-md-4 pull-right">
+<div class="clearfix">
+    <div class="container">
+        <a href="@Url.Action("Create", "Customers")" class="btn btn-info btn-sm">
+            <span class="glyphicon glyphicon-plus"></span> Add Customer
+        </a>
+    </div>
+</div>
+
+<div class="form-horizontal col-md-4 pull-right" id="customer-search">
     <form method="GET">
         <fieldset>
             <legend>Search for Customer</legend>
@@ -23,7 +31,7 @@
             </div>
             <div class="form-group">
                 <label>Customer Number</label>
-                @Html.TextBox("CustomerNumber", searchCustomer.CustomerNumber)
+                @Html.TextBox("CustomerNumber", "")
             </div>
             <div class="form-group">
                 <input type="submit" value="Search Customers"/>
@@ -32,11 +40,7 @@
     </form>
 </div>
 
-
-<p>
-    @Html.ActionLink("Create New Customer", "Create")
-</p>
-<table class="table" id="customer-table">
+<table class="table-condensed table-bordered" id="customer-table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -47,25 +51,42 @@
         <th>
             @Html.DisplayNameFor(model => model.CustomerNumber)
         </th>
-        <th></th>
+        <th>Customer Actions</th>
     </tr>
-
-    @foreach (var item in Model)
+    @foreach (var customer in Model)
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.FirstName)
+                @Html.DisplayFor(modelItem => customer.FirstName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LastName)
+                @Html.DisplayFor(modelItem => customer.LastName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CustomerNumber)
+                @Html.DisplayFor(modelItem => customer.CustomerNumber)
             </td>
+            @{
+                string detailsId = customer.Id + "orderDetails";
+            }
+
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                <a href="@Url.Action("Edit", new {id = customer.Id})" class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit Customer
+                </a>
+                <button type="button" data-toggle="collapse" data-target="#@detailsId" class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> View Orders
+                </button>
             </td>
         </tr>
+        <tr class="collapse" id="@detailsId">
+            @Html.Partial("_Orders", customer.Orders)
+        </tr>
     }
-
 </table>
+    
+
+
+
+
+
+

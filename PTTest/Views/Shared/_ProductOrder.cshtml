@@ -1,0 +1,31 @@
+﻿@using PearlTech.Framework.Models
+@model IEnumerable<ProductOrder>
+
+@foreach (var item in Model)
+{
+<div class="product-info col-md-4">
+
+    <span> @Html.DisplayFor(model => item.Product.ProductName)</span>
+
+    <h6>@Html.DisplayNameFor(model => model.Quantity) :</h6>
+    <span> @Html.DisplayFor(model => item.Quantity)</span>
+    &nbsp
+    <abbr title="Add function to add later">
+        <a href="#">
+            <p class="glyphicon glyphicon-plus"></p>
+        </a>
+    </abbr>
+    &nbsp
+    <abbr title="Subtract function to add later">
+        <a href="#">
+            <p class="glyphicon glyphicon-minus"></p>
+        </a>
+    </abbr>
+    &nbsp
+    <abbr title="Remove function to add later">
+        <a href="#">
+            <p class="glyphicon glyphicon-remove"></p>
+        </a>
+    </abbr>
+</div>
+}

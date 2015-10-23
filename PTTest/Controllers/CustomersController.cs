@@ -1,18 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.EnterpriseServices;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using System.Net;
 using System.Web.Mvc;
-using System.Web.UI.WebControls.Expressions;
-using PearlTech.DAL;
+using PearlTech.DAL.Interfaces;
 using PearlTech.Framework.Models;
 
 namespace PTTest.Controllers
 {
     public class CustomersController : Controller
     {
-        private DataContext _db = new DataContext();
+        public CustomersController(IRepositoryBase<Customer> customerRepo)
+        {
+            _db = customerRepo;
+        }
+
+        private IRepositoryBase<Customer> _db;
 
         // GET: Customers
         public ActionResult Index(Customer searchCustomer = null)
@@ -20,12 +23,6 @@ namespace PTTest.Controllers
             var customers = CustomerSearch(searchCustomer);
 
             return View(customers);
-        }
-
-        // GET: Customers/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
         }
 
         // GET: Customers/Create
@@ -37,12 +34,13 @@ namespace PTTest.Controllers
         // POST: Customers/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FirstName,LastName,CustomerId")] Customer customer)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,CustomerNumber")] Customer customer)
         {
             if (ModelState.IsValid)
             {
-                _db.Customers.Add(customer);
-                _db.SaveChanges();
+                _db.Insert(customer);
+                _db.Commit();
+                
                 return RedirectToAction("Index");
             }
             else
@@ -52,67 +50,101 @@ namespace PTTest.Controllers
         }
 
         // GET: Customers/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            Customer customer = _db.GetByID(id);
+            
+            if (customer == null)
+            {
+                return HttpNotFound();
+            }
+            return View(customer);
         }
 
         // POST: Customers/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,CustomerNumber")] Customer customer)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                _db.Update(customer);
+                _db.Commit();
+                
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            return View(customer);
         }
 
         public IEnumerable<Customer> CustomerSearch(Customer searchCustomer)
         {
-            IQueryable<Customer> customers;
+            IEnumerable<Customer> customers;
             if (searchCustomer == null)
             {
-                customers = from c in _db.Customers
-                            select c;
+                customers = _db.GetAll()
+                    .Include(c => c.Orders
+                        .Select(o => o.ProductOrder
+                            .Select(p => p.Product)));
 
             }
             else if (searchCustomer.CustomerNumber != 0)
             {
-                customers = from c in _db.Customers
-                            where c.CustomerNumber.Equals(searchCustomer.CustomerNumber)
-                            select c;
+                customers = _db.GetAll()
+                    .Where(c => c.CustomerNumber == searchCustomer.CustomerNumber)
+                    .Include(c => c.Orders
+                        .Select(o => o.ProductOrder
+                            .Select(p => p.Product)));
             }
             else if (searchCustomer.FirstName != null && searchCustomer.LastName != null)
             {
-                customers = from c in _db.Customers
-                            where c.LastName.Contains(searchCustomer.LastName) &&
-                                  c.FirstName.Contains(searchCustomer.FirstName)
-                            select c;
+                customers = _db.GetAll()
+                    .Where(c => c.FirstName.Contains(searchCustomer.FirstName) &&
+                        c.LastName.Contains(searchCustomer.LastName))
+                    .Include(c => c.Orders
+                        .Select(o => o.ProductOrder
+                            .Select(p => p.Product)));
             }
             else if (searchCustomer.FirstName != null && searchCustomer.LastName == null)
             {
-                customers = from c in _db.Customers
-                            where c.FirstName.Contains(searchCustomer.FirstName)
-                            select c;
+                customers = _db.GetAll()
+                    .Where(c => c.FirstName.Contains(searchCustomer.FirstName))
+                    .Include(c => c.Orders
+                        .Select(o => o.ProductOrder
+                            .Select(p => p.Product)));
             }
             else if (searchCustomer.FirstName == null && searchCustomer.LastName != null)
             {
-                customers = from c in _db.Customers
-                            where c.LastName.Contains(searchCustomer.LastName)
-                            select c;
+                customers = _db.GetAll()
+                    .Where(c => c.LastName.Contains(searchCustomer.LastName))
+                    .Include(c => c.Orders
+                        .Select(o => o.ProductOrder
+                            .Select(p => p.Product)));
             }
             else
             {
-                customers = from c in _db.Customers
-                            select c;
+                customers = _db.GetAll()
+                   .Include(c => c.Orders
+                       .Select(o => o.ProductOrder
+                           .Select(p => p.Product)));
             }
-            return customers.AsEnumerable();
+
+            return customers.ToList();
+        }
+
+        
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
